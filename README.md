@@ -14,7 +14,7 @@ It is not an agent runtime or orchestration platform. It is a practical operatin
 
 ## Demo
 
-The screenshot below shows a playable Snake game delivered by following this guide in the sibling `BabyLearn/` project.
+The screenshot below shows a playable Snake game delivered by following this guide in a sample repository.
 
 ![Snake game demo built with Agent Coding Guide](./assets/snake-demo.png)
 

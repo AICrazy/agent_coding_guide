@@ -14,7 +14,7 @@
 
 ## Demo 演示
 
-下面这张截图展示了一个按这套 guide 在同级 `BabyLearn/` 项目中交付出来的可玩贪吃蛇游戏。
+下面这张截图展示了一个按这套 guide 在示例仓库中交付出来的可玩贪吃蛇游戏。
 
 ![使用 Agent Coding Guide 交付的贪吃蛇 Demo](./assets/snake-demo.png)
 
