@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card panel-card">
+        <div>
+          <p class="eyebrow">Arcade Lab</p>
+          <h1>Snake Sprint</h1>
+          <p class="hero-copy">
+            Guide the snake, pick your pace, and keep the whole game visible in
+            one calm screen.
+          </p>
+        </div>
+        <div class="hero-pills" aria-label="Game summary">
+          <div class="hero-pill">
+            <span class="pill-label">Score</span>
+            <strong id="score-value">0</strong>
+          </div>
+          <div class="hero-pill">
+            <span class="pill-label">Status</span>
+            <strong id="status-value">Ready</strong>
+          </div>
+          <div class="hero-pill">
+            <span class="pill-label">Speed</span>
+            <strong id="speed-value">Normal</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="game-layout">
+        <div class="board-panel panel-card">
+          <div class="board-heading">
+            <div>
+              <p class="section-label">Board</p>
+              <h2>20 x 20 Grid</h2>
+            </div>
+            <span class="status-chip" id="status-chip">Ready</span>
+          </div>
+
+          <div class="board-frame" id="board-frame">
+            <canvas
+              id="game-canvas"
+              aria-label="Snake game board"
+              role="img"
+            ></canvas>
+          </div>
+
+          <p class="board-message" id="board-message">
+            Press Start or Space to begin.
+          </p>
+        </div>
+
+        <aside class="control-panel">
+          <section class="panel-card control-card">
+            <div class="section-head">
+              <div>
+                <p class="section-label">Controls</p>
+                <h2>Play Flow</h2>
+              </div>
+            </div>
+
+            <div class="control-grid">
+              <label class="control-field" for="difficulty-select">
+                <span>Difficulty</span>
+                <select id="difficulty-select">
+                  <option value="calm">Calm</option>
+                  <option value="normal" selected>Normal</option>
+                  <option value="turbo">Turbo</option>
+                </select>
+              </label>
+
+              <div class="action-row">
+                <button id="start-button" class="primary-button">Start</button>
+                <button id="pause-button">Pause</button>
+                <button id="restart-button">Restart</button>
+              </div>
+            </div>
+
+            <div class="touch-pad" aria-label="Directional controls">
+              <button data-direction="up" class="touch-button touch-up">
+                Up
+              </button>
+              <button data-direction="left" class="touch-button touch-left">
+                Left
+              </button>
+              <button data-direction="down" class="touch-button touch-down">
+                Down
+              </button>
+              <button data-direction="right" class="touch-button touch-right">
+                Right
+              </button>
+            </div>
+          </section>
+
+          <section class="panel-card info-card">
+            <div class="section-head">
+              <div>
+                <p class="section-label">Hints</p>
+                <h2>Input Guide</h2>
+              </div>
+            </div>
+
+            <ul class="hint-list">
+              <li>Use arrow keys or WASD to steer.</li>
+              <li>Tap Space to start, pause, or resume.</li>
+              <li>Press R or Restart to reset the board.</li>
+              <li>Higher difficulty makes each move tick faster.</li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script defer src="./app.js"></script>
+  </body>
+</html>

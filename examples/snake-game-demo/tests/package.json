@@ -1,0 +1,13 @@
+{
+  "name": "snake-game-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:viewport": "playwright test viewport.spec.js",
+    "test:gameplay": "playwright test gameplay.spec.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.1"
+  }
+}

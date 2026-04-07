@@ -14,7 +14,7 @@ It is not an agent runtime or orchestration platform. It is a practical operatin
 
 ## Demo
 
-The screenshot below shows a playable Snake game delivered by following this guide in a sample repository.
+The screenshot below shows a playable Snake game delivered by following this guide. The full demo project now lives in [`examples/snake-game-demo/`](./examples/snake-game-demo/).
 
 ![Snake game demo built with Agent Coding Guide](./assets/snake-demo.png)
 
@@ -69,6 +69,7 @@ This guide does **not** try to handle:
 agent_coding_guide/
 ├── assets/                 # README demo images and other guide media
 ├── agents/                 # Role definitions for each delivery stage
+├── examples/               # Runnable sample projects built with the guide
 ├── governance/             # Workflow protocol and product registry
 ├── knowledges/             # Reusable engineering knowledge notes
 ├── templates/

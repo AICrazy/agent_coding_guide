@@ -14,7 +14,7 @@
 
 ## Demo 演示
 
-下面这张截图展示了一个按这套 guide 在示例仓库中交付出来的可玩贪吃蛇游戏。
+下面这张截图展示了一个按这套 guide 交付出来的可玩贪吃蛇游戏，完整示例项目位于 [`examples/snake-game-demo/`](./examples/snake-game-demo/)。
 
 ![使用 Agent Coding Guide 交付的贪吃蛇 Demo](./assets/snake-demo.png)
 
@@ -69,6 +69,7 @@
 agent_coding_guide/
 ├── assets/                 # README 演示图片和其他指南媒体资源
 ├── agents/                 # 各交付阶段的角色定义
+├── examples/               # 使用 guide 构建的可运行示例项目
 ├── governance/             # 流程协议与产品注册表
 ├── knowledges/             # 可复用工程知识笔记
 ├── templates/

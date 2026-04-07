@@ -1,0 +1,21 @@
+# agents: 0=off (关闭), 1=single-agent (单agent)
+agents: 1
+
+# product: use a registered key in `../../governance/product_registry.yaml`
+# product: 使用 `../../governance/product_registry.yaml` 中已注册的产品键
+product: web
+
+# code_target: source code root directory for app implementation
+# code_target: 应用源码根目录；可设为 `src` 或用户指定相对目录
+code_target: src
+
+# docs: primary persisted outputs only; allowed items = design | test_report | acceptance
+# docs: 只控制主落盘输出；允许项 = design | test_report | acceptance
+# design -> docs/design.md
+# test_report -> docs/test_report.md
+# acceptance -> docs/acceptance.md
+# acceptance is required when agents > 0 (开启 agent coding 时必须包含 acceptance)
+docs:
+  - design
+  - test_report
+  - acceptance
