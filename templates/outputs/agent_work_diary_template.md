@@ -1,0 +1,23 @@
+# AGENT_WORK_DIARY (Agent 工作日记)
+
+Rule:
+- Append one entry per event. (每次事件追加一条记录)
+- Events: phase_start | blocker | difficulty | resolution | phase_done. (事件类型)
+- Every notable resolution includes a knowledge review outcome. (每个重要解决项都应包含 knowledge review 结论)
+- New `Time` values must start with `YYYY-MM-DD HH:MM:SS.mmm`; an optional short label may follow after ` | `. (新的时间字段必须以该格式起始，后面可选追加简短标签)
+
+## Entry (记录项)
+- Time: `YYYY-MM-DD HH:MM:SS.mmm | short-label`. (时间)
+- Event: `phase_start|blocker|difficulty|resolution|phase_done`. (事件类型)
+- Phase: `startup|requirement|architecture|build|test|accept|knowledge_review|retro`. (阶段)
+- Feature or component. (功能或组件)
+- Difficulty. (遇到的困难)
+- Resolved: `yes|no`. (是否解决)
+- Solution. (解决方案)
+- Knowledge review: `created|updated|skipped_with_reason`. (经验沉淀结论)
+- Knowledge ref or skip reason. (经验文件引用或跳过原因)
+- Structure change: `none|created`. (结构变更)
+- Structure ref or reason. (结构文件引用或变更原因)
+- Structure contract check: `pass|exception`. (目录结构约束检查)
+- Next action. (下一步)
+- Evidence. (证据)
