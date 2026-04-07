@@ -12,6 +12,12 @@ A lightweight, repo-first delivery guide for AI coding agents.
 
 It is not an agent runtime or orchestration platform. It is a practical operating guide you can drop into a repo to make agent-driven delivery more consistent, auditable, and easier to review.
 
+## Demo
+
+The screenshot below shows a playable Snake game delivered by following this guide in the sibling `BabyLearn/` project.
+
+![Snake game demo built with Agent Coding Guide](./assets/snake-demo.png)
+
 ## Why This Exists
 
 Most AI coding workflows break down in the same places:
@@ -61,6 +67,7 @@ This guide does **not** try to handle:
 
 ```text
 agent_coding_guide/
+├── assets/                 # README demo images and other guide media
 ├── agents/                 # Role definitions for each delivery stage
 ├── governance/             # Workflow protocol and product registry
 ├── knowledges/             # Reusable engineering knowledge notes

@@ -12,6 +12,12 @@
 
 它不是一个 Agent 运行时或编排平台，而是一套可以直接放进代码仓库中的实践型操作规范，用来让 Agent 驱动的交付更稳定、更可审计，也更容易被人类协作者复核。
 
+## Demo 演示
+
+下面这张截图展示了一个按这套 guide 在同级 `BabyLearn/` 项目中交付出来的可玩贪吃蛇游戏。
+
+![使用 Agent Coding Guide 交付的贪吃蛇 Demo](./assets/snake-demo.png)
+
 ## 为什么要做这个项目
 
 很多 AI Coding 工作流最终会在同样的地方失控：
@@ -61,6 +67,7 @@
 
 ```text
 agent_coding_guide/
+├── assets/                 # README 演示图片和其他指南媒体资源
 ├── agents/                 # 各交付阶段的角色定义
 ├── governance/             # 流程协议与产品注册表
 ├── knowledges/             # 可复用工程知识笔记
