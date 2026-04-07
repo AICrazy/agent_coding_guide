@@ -91,9 +91,21 @@ agent_coding_guide/
 
 ## Quick Start
 
-### 1. Copy the guide into your repository
+### 1. Place the guide where the agent can access it
 
-The minimal project bootstrap is:
+You can use this guide in either of these layouts:
+
+```text
+workspace/
+├── your-project/
+│   ├── README.md
+│   ├── requirements.md
+│   ├── project_config.yml
+│   └── agent_startup.md
+└── agent_coding_guide/
+```
+
+or:
 
 ```text
 your-project/
@@ -104,7 +116,7 @@ your-project/
 └── agent_startup.md
 ```
 
-Copy `agent_coding_guide/` into your project root. This guide directory is the template package that provides the workflow, roles, governance, and scaffolding assets.
+`agent_coding_guide/` does not have to live inside the project repository. Keeping it as a sibling directory is also valid, as long as the agent can read both the project files and the guide files.
 
 ### 2. Scaffold the 4 required root files from templates
 
@@ -131,17 +143,17 @@ docs:
 
 The minimal required project files are:
 
-- `agent_coding_guide/`
 - `README.md`
 - `requirements.md`
 - `project_config.yml`
 - `agent_startup.md`
+- access to `agent_coding_guide/` either inside the project or as a sibling directory
 
-These files form the smallest valid project setup for this guide.
+These files form the smallest valid setup for this guide.
 
 ### 4. Start the agent with the guide
 
-Once these 5 files are ready, you only need to ask your coding agent to start from `agent_startup.md`.
+Once these files are ready, you only need to ask your coding agent to start from `agent_startup.md`.
 
 `agent_startup.md` is the single project entrypoint. The guide then defines the read order, source-of-truth priority, workflow routing, and required outputs for the rest of the delivery process.
 

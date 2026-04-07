@@ -92,9 +92,21 @@ agent_coding_guide/
 
 ## 快速开始
 
-### 1. 将指南放入你的仓库
+### 1. 将 guide 放到 Agent 可访问的位置
 
-最小可启动项目应包含：
+这套 guide 有两种都可接受的摆放方式：
+
+```text
+workspace/
+├── your-project/
+│   ├── README.md
+│   ├── requirements.md
+│   ├── project_config.yml
+│   └── agent_startup.md
+└── agent_coding_guide/
+```
+
+或者：
 
 ```text
 your-project/
@@ -105,7 +117,7 @@ your-project/
 └── agent_startup.md
 ```
 
-将 `agent_coding_guide/` 目录复制到项目根目录。这个 guide 目录本身就是模板包，里面包含流程协议、角色定义、治理规则和脚手架模板。
+`agent_coding_guide/` 不一定要放进项目仓库内部。只要 Agent 能同时读取项目文件和 guide 文件，把它作为项目的同级目录也是完全可行的。
 
 ### 2. 用模板初始化 4 个必需的根文件
 
@@ -132,17 +144,17 @@ docs:
 
 最小必需项目文件为：
 
-- `agent_coding_guide/`
 - `README.md`
 - `requirements.md`
 - `project_config.yml`
 - `agent_startup.md`
+- 能访问到 `agent_coding_guide/`，无论它位于项目内还是项目同级目录
 
-这 5 项共同构成这套指南的最小有效项目初始化集合。
+这些内容共同构成这套指南的最小有效启动集合。
 
 ### 4. 用这套指南启动 Agent
 
-当这 5 项文件准备好之后，你只需要让 Coding Agent 从 `agent_startup.md` 开始即可。
+当这些文件准备好之后，你只需要让 Coding Agent 从 `agent_startup.md` 开始即可。
 
 `agent_startup.md` 是项目的唯一启动入口。后续该读哪些文件、以谁为真源、如何路由流程、应该产出哪些文档，都由这套 guide 自动接管。
 
