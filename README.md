@@ -91,4 +91,6 @@ Once the agent starts, it should read the prepared requirements first and derive
 - Runtime rules: [workflow_protocol.md](./governance/workflow_protocol.md)
 - Product routing: [product_registry.yaml](./governance/product_registry.yaml)
 - Guide overview: [overview.md](./overview.md)
-License: Apache 2.0. See [LICENSE](./LICENSE).
+
+## License
+Apache 2.0. See [LICENSE](./LICENSE).

@@ -91,4 +91,6 @@ workspace/
 - 运行规则：[workflow_protocol.md](./governance/workflow_protocol.md)
 - 产品路由：[product_registry.yaml](./governance/product_registry.yaml)
 - 指南概览：[overview.md](./overview.md)
-许可证：Apache 2.0，见 [LICENSE](./LICENSE)。
+
+## 许可证
+Apache 2.0，见 [LICENSE](./LICENSE)。
