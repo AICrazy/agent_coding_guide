@@ -1,50 +1,73 @@
 # PRODUCT REGISTRY (产品注册表)
 
-# products: supported product keys. (已注册的产品键)
+process_model_default: v_model
+
+role_agents:
+  master: agents/master_agent.md
+  requirements: agents/requirements_agent.md
+  system_design: agents/system_design_agent.md
+  detailed_design: agents/detailed_design_agent.md
+  sw_web: agents/sw_web_agent.md
+  sw_python: agents/sw_python_agent.md
+  verification: agents/verification_agent.md
+  acceptance: agents/acceptance_agent.md
+
 products:
-  # web: browser/web delivery path. (浏览器 / Web 交付路径)
   web:
-    # route: ordered role chain. (阶段角色链)
-    route:
-      - master
-      - architecture
-      - sw_web
-      - testing
-      - master
-    # build_role: active implementation role. (实际构建角色)
-    build_role: sw_web
-    # code_target_default: default files for an empty repo. (空仓库默认代码落点)
-    code_target_default:
+    phase_roles:
+      startup: master
+      product_requirements: requirements
+      system_requirements: requirements
+      software_requirements: requirements
+      system_design: system_design
+      detailed_design: detailed_design
+      implementation: sw_web
+      unit_test: verification
+      integration_test: verification
+      system_test: verification
+      acceptance_validation: acceptance
+      release_retro: master
+    implementation_role: sw_web
+    code_target_default: src
+    default_files:
       - index.html
       - styles.css
       - app.js
-    # knowledge_type: knowledge bucket used by build role. (经验库分类)
     knowledge_type: web
-    # acceptance_viewports: minimum viewport matrix for browser-layout verification. (浏览器布局验证的最小视口矩阵)
+    test_levels:
+      - unit
+      - integration
+      - system
     acceptance_viewports:
       desktop: 1366x768
       tablet: 768x1024
       mobile: 390x844
-    # layout_checks: minimum layout evidence for viewport-sensitive requirements. (视口相关需求的最小布局检查项)
     layout_checks:
-      - no_vertical_scroll_for_desktop_single-screen_requirements
+      - no_vertical_scroll_for_desktop_single_screen_requirements
       - no_horizontal_overflow
       - no_major_overlap_or_clipping
       - core_interaction_area_visible_and_usable
 
-  # python: local python script/runtime delivery path. (本地 Python 脚本 / 运行时交付路径)
   python:
-    # route: ordered role chain. (阶段角色链)
-    route:
-      - master
-      - architecture
-      - sw_python
-      - testing
-      - master
-    # build_role: active implementation role. (实际构建角色)
-    build_role: sw_python
-    # code_target_default: default files for an empty repo. (空仓库默认代码落点)
-    code_target_default:
+    phase_roles:
+      startup: master
+      product_requirements: requirements
+      system_requirements: requirements
+      software_requirements: requirements
+      system_design: system_design
+      detailed_design: detailed_design
+      implementation: sw_python
+      unit_test: verification
+      integration_test: verification
+      system_test: verification
+      acceptance_validation: acceptance
+      release_retro: master
+    implementation_role: sw_python
+    code_target_default: src
+    default_files:
       - main.py
-    # knowledge_type: knowledge bucket used by build role. (经验库分类)
     knowledge_type: python
+    test_levels:
+      - unit
+      - integration
+      - system

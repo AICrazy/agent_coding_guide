@@ -1,26 +1,29 @@
-# Copy to root `project_config.yml`. (复制到根目录 `project_config.yml`)
-
-# agents: 0=off (关闭), 1=single-agent (单 agent)
+# Root `project_config.yml`
 agents: 1
-
-# product: use a registered key in `agent_coding_guide/governance/product_registry.yaml`
-# product: 使用 `agent_coding_guide/governance/product_registry.yaml` 中已注册的产品键
 product: web
-
-# code_target: source code root directory for app implementation
-# code_target: 应用源码根目录；可设为 `src` 或用户指定相对目录
+process_model: v_model
+review_mode: virtual_roles
 code_target: src
-
-# test tooling defaults to root `tests/` by guide policy
-# 测试工具默认放在根目录 `tests/`
-
-# docs: primary persisted outputs only; allowed items = design | test_report | acceptance
-# docs: 只控制主落盘输出；允许项 = design | test_report | acceptance
-# design -> docs/design.md
-# test_report -> docs/test_report.md
-# acceptance -> docs/acceptance.md
-# acceptance is required when agents > 0 (开启 agent coding 时必须包含 acceptance)
-docs:
-  - design
-  - test_report
-  - acceptance
+test_levels:
+  - unit
+  - integration
+  - system
+requirements_pack:
+  - product_requirements
+  - system_requirements_spec
+  - software_requirements_spec
+  - requirements_review
+design_pack:
+  - system_design
+  - detailed_design
+  - design_review
+verification_pack:
+  - test_plan
+  - verification_report
+  - test_readiness_review
+validation_pack:
+  - acceptance_report
+  - acceptance_review
+quality_pack:
+  - traceability_matrix
+  - release_retro

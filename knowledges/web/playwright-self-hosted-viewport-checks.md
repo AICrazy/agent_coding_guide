@@ -13,7 +13,7 @@
 - Put browser viewport checks behind a Playwright config that defines a local `webServer`, for example `python3 -m http.server 4173 -d src`, and point the tests at the matching local URL.
 - Keep `reuseExistingServer: true` so the same command works both in clean CI-like runs and in local iterative debugging.
 - Keep the Playwright config, package script, and dependencies together inside the project's dedicated `tests/` directory so browser tooling does not leak into the product root.
-- Wire the config into the package script so `npm --prefix tests run test:viewport` is self-contained.
+- Wire the config into the package script so a dedicated system or viewport command such as `npm --prefix tests run test:system` is self-contained.
 - Why it worked:
   - It removes a manual prerequisite from acceptance.
   - Viewport evidence becomes reproducible across repeated runs.

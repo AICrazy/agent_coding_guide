@@ -1,42 +1,28 @@
-# AGENT_CODING_GUIDE (Agent 开发指南)
+# AGENT_CODING_GUIDE
 
-Purpose: minimal delivery guide. (最小交付 guide)
+Purpose:
+- compact V-model repo guide for single-agent delivery
 
-Support (支持范围):
-- single-agent only (`agents: 0|1`) (仅支持单 agent)
-- product must be registered in `governance/product_registry.yaml` (产品需在注册表中定义)
-
-Project entry (项目入口):
+Runtime entry:
 - `agent_startup.md`
 
-Project inputs (项目输入):
+Runtime files:
 - `project_config.yml`
-- `README.md`
-- `requirements.md`
-- `project_process.md`
-- `agent_work_diary.md`
+- `docs/requirements/`
+- `project_process.md` if present
+- `agent_work_diary.md` if present
+- sibling `../agent_coding_guide/governance/workflow_protocol.md`
+- sibling `../agent_coding_guide/governance/product_registry.yaml`
 
-Primary outputs (主输出):
-- `project_process.md`
-- `agent_work_diary.md`
-- `docs/design.md`
-- `docs/test_report.md`
-- `docs/acceptance.md`
+Outputs:
+- `docs/requirements/`
+- `docs/design/`
+- `docs/verification/`
+- `docs/validation/`
+- `docs/quality/`
 
-Structure contract (目录结构约束):
-- product code -> `code_target` (通常 `src/`)
-- test tooling -> `tests/`
+Structure:
+- product code -> `code_target`
+- verification assets -> `tests/`
 - persisted docs -> `docs/`
-- guide assets -> `agent_coding_guide/`
-- other top-level dirs/files require explicit justification (其他根级目录/文件必须明确说明理由)
-
-Template groups (模板分组):
-- `templates/inputs/`
-- `templates/outputs/`
-
-Execution protocol (执行协议):
-- `governance/workflow_protocol.md`
-- `governance/product_registry.yaml`
-
-Role entry (角色入口):
-- `agents/master_agent.md`
+- sibling guide assets -> `../agent_coding_guide/`

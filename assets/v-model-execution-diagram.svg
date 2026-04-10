@@ -1,0 +1,142 @@
+<svg width="1700" height="1360" viewBox="0 0 1700 1360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1700" y2="1360" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F2E8"/>
+      <stop offset="1" stop-color="#F2F6F1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0E1F17" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10V0Z" fill="#456455"/>
+    </marker>
+    <marker id="dashArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10V0Z" fill="#8A6A2C"/>
+    </marker>
+    <style>
+      .title { font: 700 42px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #163222; }
+      .subtitle { font: 400 20px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #4D6255; }
+      .small { font: 600 14px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #5B695F; letter-spacing: 0.08em; text-transform: uppercase; }
+      .box-title { font: 700 22px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #183427; }
+      .box-code { font: 600 15px "SFMono-Regular", "Menlo", monospace; fill: #65786D; }
+      .box-body { font: 500 17px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #496155; }
+      .pill-text { font: 700 15px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #153020; }
+      .foot { font: 500 18px "Avenir Next", "Segoe UI", Arial, sans-serif; fill: #4B5D53; }
+    </style>
+  </defs>
+
+  <rect width="1700" height="1360" fill="url(#bg)"/>
+
+  <text x="84" y="84" class="title">Guide V-Model Execution</text>
+  <text x="84" y="118" class="subtitle">Requirements first, design with traceability, implement once, then verify and accept against the original intent.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="84" y="156" rx="26" ry="26" width="500" height="150" fill="#FFF9EE" stroke="#D8C59A" stroke-width="2"/>
+    <text x="114" y="196" class="small">Before Agent Startup</text>
+    <text x="114" y="228" class="box-body">Human prepares the baseline inputs:</text>
+    <text x="114" y="256" class="box-code">project_config.yml</text>
+    <text x="114" y="282" class="box-code">docs/requirements/product_requirements.md</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="120" y="360" rx="24" ry="24" width="280" height="88" fill="#FFF8F5" stroke="#D69F95" stroke-width="2"/>
+    <text x="260" y="402" class="box-title" text-anchor="middle">Product Requirements</text>
+    <text x="260" y="427" class="box-code" text-anchor="middle">docs/requirements/</text>
+
+    <rect x="250" y="500" rx="24" ry="24" width="300" height="88" fill="#FFF7F3" stroke="#DAB08E" stroke-width="2"/>
+    <text x="400" y="542" class="box-title" text-anchor="middle">System Requirements</text>
+    <text x="400" y="567" class="box-code" text-anchor="middle">docs/requirements/</text>
+
+    <rect x="380" y="640" rx="24" ry="24" width="320" height="88" fill="#FFF8F1" stroke="#D9B57A" stroke-width="2"/>
+    <text x="540" y="682" class="box-title" text-anchor="middle">Software Requirements</text>
+    <text x="540" y="707" class="box-code" text-anchor="middle">docs/requirements/</text>
+
+    <rect x="520" y="780" rx="24" ry="24" width="270" height="88" fill="#F7F8EF" stroke="#B8BF7B" stroke-width="2"/>
+    <text x="655" y="822" class="box-title" text-anchor="middle">System Design</text>
+    <text x="655" y="847" class="box-code" text-anchor="middle">docs/design/</text>
+
+    <rect x="650" y="920" rx="24" ry="24" width="280" height="88" fill="#F2F7EE" stroke="#8CB58F" stroke-width="2"/>
+    <text x="790" y="962" class="box-title" text-anchor="middle">Detailed Design</text>
+    <text x="790" y="987" class="box-code" text-anchor="middle">docs/design/</text>
+
+    <rect x="680" y="1060" rx="28" ry="28" width="320" height="100" fill="#173928"/>
+    <text x="840" y="1106" style="font:700 29px 'Avenir Next','Segoe UI',Arial,sans-serif; fill:#F8FBF7;" text-anchor="middle">Implementation</text>
+    <text x="840" y="1136" style="font:600 16px 'SFMono-Regular','Menlo',monospace; fill:#CFE1D3;" text-anchor="middle">single code_target -&gt; src/</text>
+
+    <rect x="1010" y="920" rx="24" ry="24" width="230" height="88" fill="#EFF7F5" stroke="#83B7A7" stroke-width="2"/>
+    <text x="1125" y="962" class="box-title" text-anchor="middle">Unit Test</text>
+    <text x="1125" y="987" class="box-code" text-anchor="middle">tests/unit/</text>
+
+    <rect x="1110" y="780" rx="24" ry="24" width="320" height="88" fill="#EEF7FA" stroke="#85B3C7" stroke-width="2"/>
+    <text x="1270" y="822" class="box-title" text-anchor="middle">Integration Test</text>
+    <text x="1270" y="847" class="box-code" text-anchor="middle">tests/ + browser checks</text>
+
+    <rect x="1220" y="500" rx="24" ry="24" width="300" height="88" fill="#F1F6FF" stroke="#8FA5D8" stroke-width="2"/>
+    <text x="1370" y="542" class="box-title" text-anchor="middle">System Test</text>
+    <text x="1370" y="567" class="box-code" text-anchor="middle">tests/ + system evidence</text>
+
+    <rect x="1310" y="360" rx="24" ry="24" width="320" height="88" fill="#F6F2FF" stroke="#A98FD7" stroke-width="2"/>
+    <text x="1470" y="402" class="box-title" text-anchor="middle">Acceptance Validation</text>
+    <text x="1470" y="427" class="box-code" text-anchor="middle">docs/validation/</text>
+  </g>
+
+  <g stroke="#456455" stroke-width="4" fill="none" marker-end="url(#arrow)">
+    <path d="M260 306L260 360"/>
+    <path d="M260 448L330 500"/>
+    <path d="M400 588L470 640"/>
+    <path d="M540 728L610 780"/>
+    <path d="M655 868L740 920"/>
+    <path d="M790 1008L840 1060"/>
+    <path d="M1000 1110L1090 1008"/>
+    <path d="M1155 920L1230 868"/>
+    <path d="M1270 780L1360 588"/>
+    <path d="M1430 500L1490 448"/>
+  </g>
+
+  <g stroke="#8A6A2C" stroke-width="3.5" stroke-dasharray="8 8" fill="none" marker-end="url(#dashArrow)">
+    <path d="M930 964L1010 964"/>
+    <path d="M700 684C860 706 1010 744 1110 824"/>
+    <path d="M550 544L1220 544"/>
+    <path d="M400 404L1310 404"/>
+    <path d="M1270 868C1250 1000 1160 1090 1000 1110"/>
+  </g>
+
+  <g>
+    <text x="970" y="944" class="small" fill="#8A6A2C" text-anchor="middle">verified by</text>
+    <text x="920" y="742" class="small" fill="#8A6A2C" text-anchor="middle">verified by</text>
+    <text x="885" y="520" class="small" fill="#8A6A2C" text-anchor="middle">verified by</text>
+    <text x="980" y="390" class="small" fill="#8A6A2C" text-anchor="middle">validated by</text>
+    <text x="1330" y="1054" class="small" fill="#8A6A2C" text-anchor="middle">fail required test -&gt; fix -&gt; retest</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="500" y="330" rx="999" ry="999" width="240" height="42" fill="#E6F0DD" stroke="#98B383"/>
+    <text x="620" y="357" class="pill-text" text-anchor="middle">G1 Requirements Baseline</text>
+
+    <rect x="200" y="720" rx="999" ry="999" width="220" height="42" fill="#E6F0DD" stroke="#98B383"/>
+    <text x="310" y="747" class="pill-text" text-anchor="middle">G2 Design Baseline</text>
+
+    <rect x="880" y="860" rx="999" ry="999" width="200" height="42" fill="#E6F0DD" stroke="#98B383"/>
+    <text x="980" y="887" class="pill-text" text-anchor="middle">G3 Test Readiness</text>
+
+    <rect x="1175" y="452" rx="999" ry="999" width="230" height="42" fill="#E6F0DD" stroke="#98B383"/>
+    <text x="1290" y="479" class="pill-text" text-anchor="middle">G4 Verification Complete</text>
+
+    <rect x="1290" y="312" rx="999" ry="999" width="220" height="42" fill="#E6F0DD" stroke="#98B383"/>
+    <text x="1400" y="339" class="pill-text" text-anchor="middle">G5 Acceptance Complete</text>
+  </g>
+
+  <g>
+    <text x="84" y="1320" class="foot">Guide outputs stay traceable across</text>
+    <text x="410" y="1320" style="font:600 18px 'SFMono-Regular','Menlo',monospace; fill:#173928;">docs/requirements</text>
+    <text x="612" y="1320" class="foot">-&gt;</text>
+    <text x="654" y="1320" style="font:600 18px 'SFMono-Regular','Menlo',monospace; fill:#173928;">docs/design</text>
+    <text x="798" y="1320" class="foot">-&gt;</text>
+    <text x="840" y="1320" style="font:600 18px 'SFMono-Regular','Menlo',monospace; fill:#173928;">src</text>
+    <text x="886" y="1320" class="foot">-&gt;</text>
+    <text x="928" y="1320" style="font:600 18px 'SFMono-Regular','Menlo',monospace; fill:#173928;">tests</text>
+    <text x="994" y="1320" class="foot">-&gt;</text>
+    <text x="1036" y="1320" style="font:600 18px 'SFMono-Regular','Menlo',monospace; fill:#173928;">docs/validation</text>
+    <text x="1244" y="1320" class="foot">with gate decisions and evidence.</text>
+  </g>
+</svg>

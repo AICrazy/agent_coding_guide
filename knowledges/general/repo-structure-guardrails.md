@@ -13,7 +13,7 @@
 - Reuse existing categorized locations before creating anything new.
 - Treat `code_target` as the default home for product implementation files.
 - Keep test scripts, test configs, and test-tool dependency entrypoints together inside a dedicated `tests/` directory.
-- Use selected `docs/` plus `agent_coding_guide/knowledges/` for persisted documents.
+- Use selected `docs/` plus sibling `../agent_coding_guide/knowledges/` for reusable persisted guidance.
 - Require an explicit recorded reason before creating any new top-level file or directory.
 - Route runtime, cache, and report artifacts into named categories and ignore them when they are not part of the intended persisted outputs.
 - Why it worked:

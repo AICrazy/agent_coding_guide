@@ -4,18 +4,14 @@
 - Product summary. (产品概览)
 - What users can do. (用户可以做什么)
 
-## Features (功能特性)
-- Core features. (核心功能)
-- User-visible behavior. (用户可见行为)
+## Quick Start (快速开始)
+- How to run or open the project. (如何运行或打开项目)
+- Where the main entrypoint lives. (主入口位置)
 
-## Controls Or Usage (操作或使用方式)
-- Main controls or usage path. (主要操作或使用路径)
-- Optional shortcuts if any. (如有则列出快捷方式)
+## Source Of Truth (真源)
+- `docs/requirements/` is the delivery source of truth. (交付真源)
+- `README.md` is a human-friendly overview only. (`README.md` 仅供人类快速了解项目)
 
-## Product Scope (产品范围)
-- In-product scope. (产品范围内)
-- Explicit exclusions. (明确排除项)
-
-## Audience (目标用户)
-- Intended users. (目标用户)
-- Main scenarios. (主要场景)
+## Notes (备注)
+- Main usage or control notes. (主要操作说明)
+- Constraints or setup warnings if any. (约束或注意事项)

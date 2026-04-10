@@ -1,139 +1,153 @@
-# WORKFLOW_PROTOCOL (执行协议)
+# WORKFLOW_PROTOCOL
 
-version:
-- `v1`
+version: `v4`
 
-support:
-- `agents: 0|1`
-- registered `product`
-- route/build role/defaults come from product registry
+runtime_defaults:
+- `agents: 1`
+- one registered `product`
+- one `code_target`
+- `process_model: v_model`
+- `review_mode: virtual_roles`
+- phase-role routing comes from sibling guide file `../agent_coding_guide/governance/product_registry.yaml`
 
-config:
-- `agents`: `0|1`
-- `product`: registered key
-- `code_target`: relative source root
-- `docs`: `design|test_report|acceptance`
-- invalid:
-  - bad `agents`
-  - unknown `product`
-  - absolute or empty `code_target`
-  - unknown or duplicate `docs`
-  - `agents: 1` without `acceptance`
+read_order:
+- entry point is `agent_startup.md`; the agent reads the following in order after startup:
+1. `project_process.md` if present
+2. latest 20 `agent_work_diary.md` entries if present
+3. `project_config.yml`
+4. `docs/requirements/product_requirements.md`
+5. `../agent_coding_guide/governance/workflow_protocol.md`
+6. `../agent_coding_guide/governance/product_registry.yaml`
+7. `docs/requirements/system_requirements_spec.md` if present
+8. `docs/requirements/software_requirements_spec.md` if present
+9. `README.md` only if extra human context is needed
 
-inputs:
-1. `agent_startup.md`
-2. `project_process.md` if present
-3. `agent_work_diary.md` if present
-4. `project_config.yml`
-5. `README.md`
-6. `requirements.md`
-7. `agent_coding_guide/governance/product_registry.yaml`
+truth:
+- `docs/requirements/ > README.md`
+- `README.md` is optional human context
+- missing required docs -> scaffold from matching templates
+- root `requirements.md` is retired
 
-precedence:
-- `agent_startup.md` defines startup order only
-- `project_process.md` holds phase/state/code target
-- `agent_work_diary.md` holds difficulties/resolutions
-- `requirements.md > README.md`
-- missing `agent_startup.md` -> scaffold from `templates/inputs/agent_startup_template.md`
-- missing `README.md` -> scaffold from `templates/inputs/readme_template.md`
-- missing `requirements.md` -> scaffold from `templates/inputs/requirements_template.md`
-- missing `project_process.md` -> scaffold from `templates/outputs/project_process_template.md`
-- missing `agent_work_diary.md` -> scaffold from `templates/outputs/agent_work_diary_template.md`
-- do not overwrite root `requirements.md` in normal flow
+required_config:
+- `agents`
+- `product`
+- `process_model`
+- `review_mode`
+- `code_target`
+- `test_levels`
+- `requirements_pack`
+- `design_pack`
+- `verification_pack`
+- `validation_pack`
+- `quality_pack`
 
-outputs:
-- `project_process` -> `project_process.md` -> `templates/outputs/project_process_template.md`
-- `agent_work_diary` -> `agent_work_diary.md` -> `templates/outputs/agent_work_diary_template.md`
-- `design` -> `docs/design.md` -> `templates/outputs/design_template.md`
-- `test_report` -> `docs/test_report.md` -> `templates/outputs/test_report_template.md`
-- `acceptance` -> `docs/acceptance.md` -> `templates/outputs/acceptance_template.md`
-- `defect` -> `docs/defects/<id>.md` -> `templates/outputs/defect_report_template.md`
-- `security` -> `docs/security.md` -> `templates/outputs/security_note_template.md`
-- `knowledge` -> `agent_coding_guide/knowledges/<type>/<feature>.md` -> `templates/outputs/knowledge_template.md`
+config_rules:
+- `product` must exist in product registry
+- `process_model` must be `v_model`
+- `review_mode` must be `virtual_roles`
+- `code_target` must be relative and non-empty
+- `test_levels` must include `unit|integration|system`
+- `requirements_pack` must include `product_requirements|system_requirements_spec|software_requirements_spec|requirements_review`
+- `design_pack` must include `system_design|detailed_design|design_review`
+- `verification_pack` must include `test_plan|verification_report|test_readiness_review`
+- `validation_pack` must include `acceptance_report|acceptance_review`
+- `quality_pack` must include `traceability_matrix|release_retro`
 
-flow:
-1. `requirement` -> normalize scope and map acceptance to planned evidence
-2. `architecture` -> define boundary, modules, constraints, `code_target`
-3. `build` -> implement `scope_in`
-4. `test` -> verify behavior and evidence, classify defects
-5. `accept` -> accept only with passing evidence for all required criteria
-6. `knowledge_review` -> `created|updated|skipped_with_reason`
-7. `retro` -> may live in `docs/acceptance.md`
+default_outputs:
+- `project_process.md`
+- `agent_work_diary.md`
+- `docs/requirements/product_requirements.md`
+- `docs/requirements/system_requirements_spec.md`
+- `docs/requirements/software_requirements_spec.md`
+- `docs/requirements/requirements_review.md`
+- `docs/design/system_design.md`
+- `docs/design/detailed_design.md`
+- `docs/design/design_review.md`
+- `docs/verification/test_plan.md`
+- `docs/verification/verification_report.md`
+- `docs/verification/test_readiness_review.md`
+- `docs/validation/acceptance_report.md`
+- `docs/validation/acceptance_review.md`
+- `docs/quality/traceability_matrix.md`
+- `docs/quality/release_retro.md`
 
-phase_values:
-- `startup|requirement|architecture|build|test|accept|knowledge_review|retro`
+conditional_outputs:
+- `docs/quality/change_requests/<id>.md` after `G1` scope changes
+- `docs/quality/defects/<id>.md` for formal defect tracking or gate-affecting issues
+- `docs/quality/security_assessment.md` for sensitive changes
+- `docs/quality/risk_register.md` when a separate risk log is needed
+- `../agent_coding_guide/knowledges/<type>/<feature>.md` only for reusable insight
 
-code_target:
-- resolve once before `build`
-- `project_config.yml.code_target` wins when present
-- reuse existing layout first
-- empty repo default -> use product registry default
-- no duplicate app root
+output_templates:
+  project_process: templates/outputs/project_process_template.md
+  agent_work_diary: templates/outputs/agent_work_diary_template.md
+  product_requirements: templates/inputs/product_requirements_template.md
+  system_requirements_spec: templates/outputs/system_requirements_spec_template.md
+  software_requirements_spec: templates/outputs/software_requirements_spec_template.md
+  requirements_review: templates/outputs/phase_gate_review_template.md
+  system_design: templates/outputs/system_design_template.md
+  detailed_design: templates/outputs/detailed_design_template.md
+  design_review: templates/outputs/phase_gate_review_template.md
+  test_plan: templates/outputs/test_plan_template.md
+  verification_report: templates/outputs/verification_report_template.md
+  test_readiness_review: templates/outputs/phase_gate_review_template.md
+  acceptance_report: templates/outputs/acceptance_report_template.md
+  acceptance_review: templates/outputs/phase_gate_review_template.md
+  traceability_matrix: templates/outputs/traceability_matrix_template.md
+  release_retro: templates/outputs/release_retro_template.md
+  change_request: templates/outputs/change_request_template.md
+  defect_report: templates/outputs/defect_report_template.md
+  security_assessment: templates/outputs/security_assessment_template.md
+  risk_register: templates/outputs/risk_register_template.md
+  knowledge: templates/outputs/knowledge_template.md
 
-structure_policy:
-- reuse existing locations first
-- product files -> chosen `code_target`
-- test scripts/configs/tooling entrypoints -> root `tests/`
-- persisted docs -> selected `docs/` or `agent_coding_guide/knowledges/`
-- allowed top-level dirs: chosen `code_target`, `tests/`, `docs/`, `agent_coding_guide/`, unless user-approved
-- allowed recurring root files: delivery inputs/outputs plus lightweight repo metadata such as `README.md`, `requirements.md`, `project_config.yml`, `project_process.md`, `agent_work_diary.md`, `agent_startup.md`, `.gitignore`, `LICENSE`
-- new top-level files/dirs require recorded reason, owner, and why existing locations were insufficient
-- runtime/cache/report artifacts go to categorized ignored locations
-- no scratch/debug leftovers in repo root
-- extend an existing category before creating a parallel bucket
+phases:
+- `startup|product_requirements|system_requirements|software_requirements|system_design|detailed_design|implementation|unit_test|integration_test|system_test|acceptance_validation|release_retro`
 
-rules:
-- `docs` controls persistence only; phases always run
-- update `project_process.md` at phase start, phase completion, `blocked`, and `rework`
-- append one `agent_work_diary.md` entry at phase start, blocker, major difficulty, resolution, and phase completion
-- every new `agent_work_diary.md` `Time` value must start with `YYYY-MM-DD HH:MM:SS.mmm`; an optional short label may follow after ` | `
-- product code writes stay inside chosen `code_target`
-- during `requirement`, create a requirement-to-evidence checklist from every acceptance criterion and any explicit non-functional requirement that can block usability
-- during `test`, every acceptance criterion must map to a concrete verification method and result; unverified required criteria are test failures, not soft risks
-- a risk note cannot replace missing evidence for a required acceptance criterion
-- `accept` requires passing evidence for every required acceptance criterion; missing evidence or failed evidence => no acceptance
-- run `knowledge_review` before finishing `accept`; record exactly one of `created|updated|skipped_with_reason`
-- if skipped, record the reason in `agent_work_diary.md`
-- if a tool normally creates root artifacts, reconfigure it into `tests/` or another approved location when feasible
-- if a framework truly requires a root file, record why relocation was not feasible
-- blocker defect -> no acceptance
-- security blocker -> no acceptance
-- requirement ambiguity -> `blocked`
-- design conflict -> `rework: architecture`
-- test fail -> `rework: active build role`
-- waived issue -> write `defect` or `security`
-- sensitive change -> write `docs/security.md`
-- knowledge is optional; write only for reusable experience, notable difficulty, or a better later solution
-- evaluate knowledge after rework, failed-test fixes, new verification patterns, or replacement solutions
-- knowledge type:
-  - `general` for reusable cross-product patterns
-  - `web` for browser/web implementation patterns
-  - `python` for python runtime/script patterns
-- repeated implementation with no new insight -> do not write knowledge
-- better later solution for same feature -> update existing knowledge note, do not create duplicate
-- before implementing a feature, active build role searches relevant notes in `knowledges/general/` and `knowledges/<type>/`
-- for `web` products, if requirements include layout, viewport fit, responsiveness, readability, clipping, or overflow expectations, test evidence must include a viewport matrix that covers at least one common desktop, tablet, and mobile size
-- for `web` viewport checks, record whether the page has vertical scrolling, horizontal overflow, major overlap/clipping, and whether the core interaction area is fully visible and usable
-- if browser automation is unavailable, produce manual viewport notes or computed layout evidence; otherwise mark acceptance `blocked` or `reject`
-- security blocker:
-  - critical/high dependency vuln
-  - committed secret
-  - unresolved auth bypass
-  - missing security evidence for sensitive change
-- sensitive change:
-  - auth/credential/secret/token handling
-  - trust-boundary external call
-  - user/private data storage
+gates:
+- `G1 Requirements Baseline`
+- `G2 Design Baseline`
+- `G3 Test Readiness`
+- `G4 Verification Complete`
+- `G5 Acceptance Complete`
+
+gate_checks:
+- `G1`: requirements docs exist; `PR-*` have planned acceptance validation; `SYS-*|SWR-*` have planned verification level; requirements review recorded
+- `G2`: design docs exist; `SD-*|DD-*` map upstream; design review recorded; one `code_target`
+- `G3`: test plan exists; readiness review exists; verification levels and acceptance scope are defined
+- `G4`: verification report exists; traceability passes; blocker defects = `none`; required security assessment passes
+- `G5`: acceptance report exists; acceptance review exists; product outcomes have final evidence; blocker defects = `none`; decision is `accept|reject`
+
+structure:
+- product files -> `code_target`
+- verification assets -> root `tests/`
+- persisted docs -> `docs/`
+- sibling guide assets -> `../agent_coding_guide/`
+- no extra top-level dirs/files without justification
+
+runtime_rules:
+- update `project_process.md` at phase start, gate decision, rework, and close-out
+- append `agent_work_diary.md` only for `phase_start|blocker|resolution|review|phase_done`
+- read only the latest 20 diary entries by default; expand history only when needed
+- keep `project_process.md` as current state, not a full history log
+- any failed required test or validation item triggers immediate rework; inspect the failing `TC-*` evidence and related `DEF-*` items before proceeding
+- rework must fix the root cause, rerun all impacted `unit|integration|system|acceptance` checks, and refresh affected evidence before the next gate decision
+- continue the fix -> retest loop until required behavior passes with traceable evidence or the release is explicitly rejected
+- after `G1`, required-behavior changes require `CR-*` plus impacted retest/revalidation
+- every required item appears in the traceability matrix
+- every required item has executed verification or validation evidence
+- blocker defect = `DEF-*` with `gate_impact: blocker`
+- default verification evidence lives in `docs/verification/verification_report.md`
+- default acceptance evidence and decision live in `docs/validation/acceptance_report.md`
+- `release_retro` is required and lives in `docs/quality/release_retro.md`
+- sensitive change requires `docs/quality/security_assessment.md`
+- `web` system verification must use registry desktop/tablet/mobile viewports when layout matters
+- if browser automation is unavailable, record manual evidence or fail/condition the affected gate
 
 done:
-- `project_process.md` exists
-- `agent_work_diary.md` exists
-- selected docs exist
-- root `requirements.md` exists
-- required behavior passes
-- every required acceptance criterion has recorded evidence and result
-- knowledge review decision is recorded
-- any top-level structure changes are explicitly justified
-- no unapproved top-level directories or tool files were introduced
-- no unresolved blocker
-- required defect/security outputs exist
+- default outputs exist
+- conditional outputs exist when triggered
+- `G1` to `G5` are recorded
+- required behavior passes with traceable evidence
+- failed required tests are either fixed and re-executed or the release is rejected
+- blocker defects are closed or release is rejected
