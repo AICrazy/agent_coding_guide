@@ -1,6 +1,6 @@
 # WORKFLOW_PROTOCOL
 
-version: `v4`
+version: `v5`
 
 runtime_defaults:
 - `agents: 1`
@@ -113,23 +113,36 @@ gates:
 
 gate_checks:
 - `G1`: requirements docs exist; `PR-*` have planned acceptance validation; `SYS-*|SWR-*` have planned verification level; requirements review recorded
-- `G2`: design docs exist; `SD-*|DD-*` map upstream; design review recorded; one `code_target`
+- `G2`: design docs exist; `SD-*|DD-*` map upstream; design review recorded; one `code_target`; no second product-code tree exists outside `code_target`
 - `G3`: test plan exists; readiness review exists; verification levels and acceptance scope are defined
 - `G4`: verification report exists; traceability passes; blocker defects = `none`; required security assessment passes
-- `G5`: acceptance report exists; acceptance review exists; product outcomes have final evidence; blocker defects = `none`; decision is `accept|reject`
+- `G5`: acceptance report exists; acceptance review exists; product outcomes have final evidence; blocker defects = `none`; decision is `accept|reject`; final structure matches this protocol with no extra root entries; compile/verification toolchain files and transient artifacts are isolated under `build/`; transient artifacts are not treated as persisted outputs
 
 structure:
 - product files -> `code_target`
 - verification assets -> root `tests/`
 - persisted docs -> `docs/`
 - sibling guide assets -> `../agent_coding_guide/`
-- no extra top-level dirs/files without justification
+- intended project root contains lifecycle files, project description files, one `code_target/`, `docs/`, `tests/`, and `build/`
+- lifecycle files are `agent_startup.md`, `project_config.yml`, `project_process.md`, `agent_work_diary.md`
+- project description files may include `README.md`, `LICENSE`, and `.gitignore`
+- registry `default_files` are interpreted relative to `code_target` unless a product definition explicitly states otherwise
+- no second product-code tree may exist outside `code_target`
+- test scripts, test configs, test fixtures, and test-tool entrypoints belong in `tests/` and must not be created at project root
+- `build/` is the dedicated location for compile/verification toolchain files, generated reports, temporary scripts, local runners, caches, package manager entrypoints, framework configs, and other non-persisted support artifacts
+- root-level toolchain files such as `package.json`, lockfiles, or framework configs are not allowed; they must live under `build/`
+- runtime/build/cache/report artifacts such as `node_modules`, `dist`, `coverage`, `playwright-report`, `test-results`, and `.cache` are not persisted outputs; when retained locally they must live under `build/` and must be ignored and cleaned before close-out unless explicitly requested
+- no extra top-level dirs/files are allowed beyond the protocol-defined root structure
 
 runtime_rules:
 - update `project_process.md` at phase start, gate decision, rework, and close-out
 - append `agent_work_diary.md` only for `phase_start|blocker|resolution|review|phase_done`
 - read only the latest 20 diary entries by default; expand history only when needed
 - keep `project_process.md` as current state, not a full history log
+- inspect the current top-level structure before creating any new file or directory outside `code_target`, `docs`, `tests`, or `build`
+- reuse existing categorized locations and do not create additional root entries beyond the protocol-defined root structure
+- when compile/verification support files or transient artifacts are needed, place them under `build/`
+- any root-structure drift is non-compliant and must be corrected before gate advancement
 - any failed required test or validation item triggers immediate rework; inspect the failing `TC-*` evidence and related `DEF-*` items before proceeding
 - rework must fix the root cause, rerun all impacted `unit|integration|system|acceptance` checks, and refresh affected evidence before the next gate decision
 - continue the fix -> retest loop until required behavior passes with traceable evidence or the release is explicitly rejected
@@ -142,12 +155,17 @@ runtime_rules:
 - `release_retro` is required and lives in `docs/quality/release_retro.md`
 - sensitive change requires `docs/quality/security_assessment.md`
 - `web` system verification must use registry desktop/tablet/mobile viewports when layout matters
+- ignore `build/` in version control and use it as the first-choice bucket for compile/verification support artifacts that do not belong to persisted outputs
+- before close-out, clean transient artifacts that are not part of intended persisted outputs or record why they were intentionally retained
 - if browser automation is unavailable, record manual evidence or fail/condition the affected gate
 
 done:
 - default outputs exist
 - conditional outputs exist when triggered
 - `G1` to `G5` are recorded
+- structure rules are satisfied with no extra root entries
+- compile/verification support artifacts are isolated under `build/`
+- transient artifacts are ignored/cleaned and are not treated as delivered outputs
 - required behavior passes with traceable evidence
 - failed required tests are either fixed and re-executed or the release is rejected
 - blocker defects are closed or release is rejected
