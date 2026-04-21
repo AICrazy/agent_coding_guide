@@ -45,8 +45,12 @@ products:
     layout_checks:
       - no_vertical_scroll_for_desktop_single_screen_requirements
       - no_horizontal_overflow
+      - no_detached_or_unanchored_text_or_controls
       - no_major_overlap_or_clipping
+      - no_unintended_inner_scroll_traps_for_primary_workflow
       - core_interaction_area_visible_and_usable
+      - primary_actions_visible_and_state_explained
+      - empty_populated_and_active_states_visually_stable
 
   python:
     phase_roles:

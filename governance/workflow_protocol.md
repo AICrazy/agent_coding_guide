@@ -111,12 +111,19 @@ gates:
 - `G4 Verification Complete`
 - `G5 Acceptance Complete`
 
+web_visual_integrity_baseline:
+- no detached or "flying" text or controls in product-visible UI
+- no major overlap, clipping, or containment breakage for text or controls
+- no unintended inner scroll traps for primary workflow content unless explicitly required by the product definition
+- primary actions remain visible, anchored, and understandable; disabled primary actions must have a clear precondition cue in the checked UI state
+- when a UI state exists in delivered behavior, check the in-scope empty, populated, and active-interaction states for required viewports
+
 gate_checks:
 - `G1`: requirements docs exist; `PR-*` have planned acceptance validation; `SYS-*|SWR-*` have planned verification level; requirements review recorded
 - `G2`: design docs exist; `SD-*|DD-*` map upstream; design review recorded; one `code_target`; no second product-code tree exists outside `code_target`
-- `G3`: test plan exists; readiness review exists; verification levels and acceptance scope are defined
-- `G4`: verification report exists; traceability passes; blocker defects = `none`; required security assessment passes
-- `G5`: acceptance report exists; acceptance review exists; product outcomes have final evidence; blocker defects = `none`; decision is `accept|reject`; final structure matches this protocol with no extra root entries; compile/verification toolchain files and transient artifacts are isolated under `build/`; transient artifacts are not treated as persisted outputs
+- `G3`: test plan exists; readiness review exists; verification levels and acceptance scope are defined; for `web`, concrete visual integrity checks are planned for required viewports and in-scope UI states
+- `G4`: verification report exists; traceability passes; blocker defects = `none`; required security assessment passes; for `web`, the visual integrity baseline passes for required viewports and in-scope UI states
+- `G5`: acceptance report exists; acceptance review exists; product outcomes have final evidence; blocker defects = `none`; decision is `accept|reject`; final structure matches this protocol with no extra root entries; compile/verification toolchain files and transient artifacts are isolated under `build/`; transient artifacts are not treated as persisted outputs; for `web`, no unresolved product-visible visual integrity defect remains
 
 structure:
 - product files -> `code_target`
@@ -150,6 +157,9 @@ runtime_rules:
 - every required item appears in the traceability matrix
 - every required item has executed verification or validation evidence
 - blocker defect = `DEF-*` with `gate_impact: blocker`
+- for `web`, development must self-check the visual integrity baseline before handoff to verification
+- for `web`, any product-visible basic visual integrity defect found by development, verification, or acceptance is gate-affecting, must be recorded as `DEF-*` or an equivalent gate issue, and must be fixed and retested before gate advancement unless the release is explicitly rejected
+- for `web`, a passing functional browser flow does not waive required visual integrity checks
 - default verification evidence lives in `docs/verification/verification_report.md`
 - default acceptance evidence and decision live in `docs/validation/acceptance_report.md`
 - `release_retro` is required and lives in `docs/quality/release_retro.md`
@@ -167,5 +177,6 @@ done:
 - compile/verification support artifacts are isolated under `build/`
 - transient artifacts are ignored/cleaned and are not treated as delivered outputs
 - required behavior passes with traceable evidence
+- for `web`, the visual integrity baseline passes with traceable evidence for required viewports and in-scope UI states
 - failed required tests are either fixed and re-executed or the release is rejected
 - blocker defects are closed or release is rejected

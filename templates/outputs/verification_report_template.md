@@ -22,6 +22,7 @@
 ## System Verification (系统验证)
 - `TC-S-*`: objective, method, result, evidence. (目标、方法、结果、证据)
 - Environment, NFR, or viewport notes if applicable. (环境、非功能或视口说明)
+- For `web`, explicitly record visual integrity results for required viewports/states and list any resulting `DEF-*` gate impact. (Web 需显式记录视口/状态视觉完整性结果及缺陷影响)
 
 ## Defects and Risks (缺陷与风险)
 - Related `DEF-*` refs or `none`. (缺陷引用)

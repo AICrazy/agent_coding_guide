@@ -5,6 +5,7 @@
 - `severity`: `sev1|sev2|sev3` (严重级别)
 - `priority`: `p0|p1|p2` (优先级)
 - `gate_impact`: `blocker|non_blocker` (门禁影响)
+- `basic_visual_integrity`: `yes|no` (是否属于基础视觉完整性缺陷)
 - `phase_found`: phase found (发现阶段)
 - `trace_refs`: affected `PR-*|SYS-*|SWR-*|TC-*` (受影响追踪项)
 - `repro`: repro steps (复现步骤)
@@ -17,3 +18,4 @@
 - `owner`: owner (负责人)
 - `closure_rule`: close only after the impacted tests are rerun and pass, or approved waiver/rejection is recorded (仅在受影响测试返测通过，或已记录批准豁免/拒绝发布后关闭)
 - `status`: `open|fixed|verified|waived|closed` (当前状态)
+- Note: for `web`, detached/overlapping/clipped text or controls, unintended primary-workflow scroll traps, or misleading primary-action states default to `basic_visual_integrity: yes` and should normally be treated as `gate_impact: blocker`. (Web 基础画面问题默认应视为门禁阻塞)
