@@ -24,6 +24,10 @@ Output:
 
 Rules:
 - treat `docs/requirements/` as the delivery source of truth
+- enforce a requirements alignment check at every workflow entry, including new projects, resumed work, bug fixes, iterations, and new scope intake
+- classify every intake with `governance/scenario_routing_policy.md` before allowing implementation or rework to continue
+- own the route transition when work escalates from `R5 -> R3`, `R6 -> R4`, or incident handling into `CR-*` scope change
+- stop implementation and route back to requirements or `CR-*` handling whenever requested behavior is uncovered or conflicts with the baselined requirements
 - allow one `code_target` only
 - enforce `G1 -> G5` gate order
 - route any failed required test back into the owning implementation and verification rework loop

@@ -37,6 +37,8 @@ That product requirements document is the real starting point. It is not optiona
 
 From there, the guide expects the rest of the delivery pack to be derived from that baseline: requirements reviews, design docs, test planning, verification evidence, validation evidence, and release close-out notes.
 
+The same rule applies at every later workflow entry too. Whether the agent is starting fresh, resuming after an interruption, fixing a bug, iterating on an existing feature, or taking a new request, it must first check the current task against the requirements baseline and stop for requirements or `CR-*` updates if they do not align.
+
 ## Workspace Layout
 
 The guide and the project should be sibling directories in the same workspace:
@@ -55,11 +57,13 @@ workspace/
 Typical guide references inside the project:
 
 - `../agent_coding_guide/governance/workflow_protocol.md`
+- `../agent_coding_guide/governance/scenario_routing_policy.md`
 - `../agent_coding_guide/governance/product_registry.yaml`
 
 ## What The Guide Gives You
 
 - startup templates that tell the agent what to read, in what order
+- scenario-routing rules that map common development situations to a fixed automated handling flow
 - output templates for requirements, design, verification, validation, and quality
 - gate-based delivery flow from baseline to acceptance
 - repository structure rules that keep code, docs, and tests predictable
@@ -86,9 +90,12 @@ Mandatory gates:
 
 Once the agent starts, it should read the prepared requirements first and derive downstream artifacts from that baseline rather than improvising from the README.
 
+That alignment step is not just for day one. Re-entry after interruptions, defect fixes, incremental updates, and new feature intake should all begin by rechecking requirement-to-implementation consistency before more code is written.
+
 ## Read Next
 
 - Runtime rules: [workflow_protocol.md](./governance/workflow_protocol.md)
+- Scenario routing: [scenario_routing_policy.md](./governance/scenario_routing_policy.md)
 - Product routing: [product_registry.yaml](./governance/product_registry.yaml)
 - Guide overview: [overview.md](./overview.md)
 

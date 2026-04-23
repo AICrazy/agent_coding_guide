@@ -9,6 +9,7 @@ runtime_defaults:
 - `process_model: v_model`
 - `review_mode: virtual_roles`
 - phase-role routing comes from sibling guide file `../agent_coding_guide/governance/product_registry.yaml`
+- scenario routing comes from sibling guide file `../agent_coding_guide/governance/scenario_routing_policy.md`
 
 read_order:
 - entry point is `agent_startup.md`; the agent reads the following in order after startup:
@@ -27,6 +28,18 @@ truth:
 - `README.md` is optional human context
 - missing required docs -> scaffold from matching templates
 - root `requirements.md` is retired
+
+requirements_alignment:
+- every workflow entry, including `new_project|resume_after_interrupt|bug_fix|iteration|new_requirement|release_rework`, starts with a requirements alignment check
+- compare the current task, in-scope implementation state, open defects, and pending outputs against baselined `PR-*|SYS-*|SWR-*`
+- if required behavior is missing, stale, conflicting, or uncovered by requirement IDs, update the requirement pack first; after `G1`, raise `CR-*` before implementation continues
+- no implementation, bug fix, iteration, or close-out may proceed on README-only intent or undocumented behavior
+
+scenario_routing:
+- classify every workflow entry into one `primary_scenario` plus optional `secondary_scenarios` using `../agent_coding_guide/governance/scenario_routing_policy.md`
+- if the user provides only goals, constraints, or acceptance criteria, the agent must choose the routed workflow itself and complete the downstream requirements -> design -> implementation -> verification -> validation loop
+- scenario classification and route status must be recorded in `project_process.md` before code changes continue
+- if multiple scenarios apply, route by precedence: `security_or_production_incident > gate_failure_or_failed_required_test > defect_fix > requirement_or_scope_change > new_build_or_resume > behavior_preserving_improvement > verification_recovery > release_closeout`
 
 required_config:
 - `agents`
@@ -146,6 +159,8 @@ runtime_rules:
 - append `agent_work_diary.md` only for `phase_start|blocker|resolution|review|phase_done`
 - read only the latest 20 diary entries by default; expand history only when needed
 - keep `project_process.md` as current state, not a full history log
+- before any implementation, resumed work, bug fix, iteration, or scope update, perform the requirements alignment check and record the decision in `project_process.md`
+- before any implementation, classify the current work using the scenario routing policy and record `primary_scenario|secondary_scenarios|baseline_impact|planned_verification`
 - inspect the current top-level structure before creating any new file or directory outside `code_target`, `docs`, `tests`, or `build`
 - reuse existing categorized locations and do not create additional root entries beyond the protocol-defined root structure
 - when compile/verification support files or transient artifacts are needed, place them under `build/`
@@ -173,6 +188,8 @@ done:
 - default outputs exist
 - conditional outputs exist when triggered
 - `G1` to `G5` are recorded
+- each workflow entry recorded a requirements alignment decision before coding or rework continued
+- each workflow entry recorded scenario routing and followed the matching routed workflow
 - structure rules are satisfied with no extra root entries
 - compile/verification support artifacts are isolated under `build/`
 - transient artifacts are ignored/cleaned and are not treated as delivered outputs

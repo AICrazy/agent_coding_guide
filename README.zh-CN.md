@@ -37,6 +37,8 @@
 
 后续的需求评审、设计文档、测试计划、验证证据、验收结论以及发布收尾，都应从这份基线继续展开。
 
+而且这条规则不只在项目启动时生效。无论是新建项目、中断后继续开发、修复缺陷、已有功能迭代，还是接收新增需求，Agent 都必须先把当前任务与需求基线做一致性检查；如果不一致，必须先更新需求，或在 `G1` 之后先提交 `CR-*`，再继续实现。
+
 ## 工作区结构
 
 `agent_coding_guide/` 和项目本身应放在同一个工作区里，并作为并列目录存在：
@@ -55,11 +57,13 @@ workspace/
 项目中通常会通过下面这样的路径引用 guide 里的规则文件：
 
 - `../agent_coding_guide/governance/workflow_protocol.md`
+- `../agent_coding_guide/governance/scenario_routing_policy.md`
 - `../agent_coding_guide/governance/product_registry.yaml`
 
 ## 它能提供什么
 
 - 规定 Agent 启动时应按什么顺序读取文件的 startup 模板
+- 一套把常见开发场景自动路由到固定处理流程的场景规范，避免在不同工作流里跑飞
 - requirements、design、verification、validation、quality 的标准输出模板
 - 一套从需求基线走到验收闭环的门禁式交付流程
 - 让代码、文档和测试目录保持稳定的仓库结构约定
@@ -86,9 +90,12 @@ workspace/
 
 启动后，Agent 应先读取准备好的 requirements，再基于这份基线推导后续工件，而不是只根据 README 自行发挥。
 
+同样地，后续每次重新进入工作流时，也必须先重新确认“当前需求、现有实现、待做事项”是否一致，不能跳过这一步直接写代码。
+
 ## 继续了解
 
 - 运行规则：[workflow_protocol.md](./governance/workflow_protocol.md)
+- 场景路由：[scenario_routing_policy.md](./governance/scenario_routing_policy.md)
 - 产品路由：[product_registry.yaml](./governance/product_registry.yaml)
 - 指南概览：[overview.md](./overview.md)
 

@@ -12,6 +12,7 @@ Runtime files:
 - `project_process.md` if present
 - `agent_work_diary.md` if present
 - sibling `../agent_coding_guide/governance/workflow_protocol.md`
+- sibling `../agent_coding_guide/governance/scenario_routing_policy.md`
 - sibling `../agent_coding_guide/governance/product_registry.yaml`
 
 Outputs:
